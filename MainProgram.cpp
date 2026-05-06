@@ -145,7 +145,7 @@ IntArray::IntArray(int cap) {
 // Destructor
 IntArray::~IntArray() {
     delete [] data;
-    Tracker::objectCreated();
+    Tracker::objectDestroyed();
     // TODO 7: Free the dynamic array using 'delete[]'
     //         Notify Tracker that an object was destroyed
 }
@@ -155,16 +155,10 @@ IntArray::IntArray(const IntArray& other) {
     capacity = other.capacity;
     count = other.count;
     data = new int[capacity];
-    for(int i = 0 ; i< count ;i++){
-        data [i] = other.data[i];
-        
-    }
-    // TODO 8: Deep copy - allocate new memory and copy elements
-    //         Don't forget to copy capacity and count
-    //         Notify Tracker that an object was created
-
+    for(int i = 0; i < count; i++)
+        data[i] = other.data[i];
+    Tracker::objectCreated();  
 }
-
 // Copy Assignment Operator
 // Copy Assignment Operator
 IntArray& IntArray::operator=(const IntArray& other) {
